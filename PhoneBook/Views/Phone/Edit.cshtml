@@ -1,0 +1,32 @@
+﻿@model PhoneBook.Models.Phones.Phone
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+        <h4>Редактирование номера</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Number" class="control-label"></label>
+                        <input asp-for="Number" class="form-control" />
+                        <span asp-validation-for="Number" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TypePhoneId" class="control-label"></label>
+                        <select asp-for="TypePhoneId" class="form-control" asp-items="ViewBag.TypePhoneId"></select>
+                        <span asp-validation-for="TypePhoneId" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="ContactId" />
+                    <div class="form-group">
+                        <input type="submit" value="Сохранить" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

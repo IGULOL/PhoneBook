@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PhoneBook.Models.Phones.Phone>
+
+<h4 style="display:block; float:left">Номера:</h4>
+
+
+@Html.ActionLink("Добавить", "Create", "Phone", new {contactId = ViewData["ContactId"]},
+    new { @class = "compItem", style = "margin: 10px 0px 10px 0px; display:block; float:right" })
+
+    
+
+
+@if (Model != null && Model.Count() != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TypePhone)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypePhone.Name)
+                    </td>
+                    <td style="text-align:right">
+                        @Html.ActionLink("Редактировать", "Edit", "Phone", new { id = item.Id }, new { @class = "compItem" }) |
+                        @Html.ActionLink("Удалить", "Delete", "Phone", new { id = item.Id }, new { @class = "compItem" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="clear:both">Номеров нет</p>
+}

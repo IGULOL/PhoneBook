@@ -1,0 +1,32 @@
+﻿@model PhoneBook.ViewModels.Account.EditAccountViewModel
+@{
+    ViewBag.Title = "Изменение пароля";
+}
+
+<h3>Редактирование </h3>
+<hr />
+
+<form asp-action="Edit" asp-controller="Account">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Email" />
+    <div>
+        <label asp-for="Surname" class="control-label"></label><br />
+        <input asp-for="Surname" class="form-control" style="width:30%" />
+        <span asp-validation-for="Surname"></span>
+    </div>
+    <div>
+        <label asp-for="Name" class="control-label"></label><br />
+        <input asp-for="Name" class="form-control" style="width:30%" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Patronymic" class="control-label"></label><br />
+        <input asp-for="Patronymic" class="form-control" style="width:30%" />
+        <span asp-validation-for="Patronymic"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-default" />
+    </div>
+</form>

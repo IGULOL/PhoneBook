@@ -1,0 +1,108 @@
+﻿@model PhoneBook.Models.Contacts.Contact
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Удаление</title>
+</head>
+<body>
+
+<br />
+<h3>Уверены, что хотите удалить контакт?</h3>
+<div>
+    <h4>Удаление</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.Surname != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+        }
+        @if (Model.Name != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        }
+        @if (Model.Patronymic != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Patronymic)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
+        }
+        @if (Model.Address != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+        }
+        @if (Model.Job != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Job)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Job)
+            </dd>
+        }
+        @if (Model.Position != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Position)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Position)
+            </dd>
+        }
+        @if (Model.Email != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        }
+        @if (Model.Skype != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Skype)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Skype)
+            </dd>
+        }
+        @if (Model.Group != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Group)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group.Name)
+            </dd>
+        }
+        </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-default" /> |
+        <a asp-area="" asp-action="Index" asp-controller="Home">Назад к списку</a>
+    </form>
+</div>
+</body>
+</html>

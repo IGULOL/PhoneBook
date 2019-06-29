@@ -1,0 +1,76 @@
+﻿@model PhoneBook.Models.Users.User
+
+@{
+    ViewData["Title"] = "Контактная книга";
+    ViewData["Message"] = "Контакты:";
+}
+
+@*@if (User.Identity.IsAuthenticated)
+    {
+        <p>@User.Identity.Name</p>
+
+        <form method="post" asp-controller="Account" asp-action="LogOff">
+            <input type="submit" value="Выход" />
+        </form>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="Login">Вход</a>
+        <a asp-controller="Account" asp-action="Register">Регистрация</a>
+    }*@
+
+<br />
+<form asp-controller="Home" asp-action="Index" method="get">
+    <p>       
+        <div class="input-group">
+            <span class="input-group-addon"> <i class="glyphicon glyphicon-search" aria-hidden="true"></i> </span>
+            <input type="text" class="form-control" name="SearchString" placeholder="Поиск...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Найти</button>
+            </span>
+        </div>
+    </p>
+</form>
+
+<h3 style="display:block; float:left">@ViewData["Message"]</h3>
+<a style="margin: 25px 0px 10px 0px; display:block; float:right" asp-area="" asp-controller="Contact" asp-action="Create">Добавить</a>
+
+@if ((Model.Contacts != null) && (Model.Contacts.Count != 0))
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacts.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacts.First().Group.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Contacts)
+            {
+            <tr>
+                <td>
+                    @String.Concat(item.Surname, " ", item.Name, " ", item.Patronymic)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Group.Name)
+                </th>
+                <td style="text-align:right">
+                    <a asp-area="" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id"> Редактировать</a> |   
+                    @*<a asp-area="" asp-controller="Contact" asp-action="Details" asp-route-id="@item.Id"> Подробнее </a> |*@ 
+                    <a asp-area="" asp-controller="Contact" asp-action="Delete" asp-route-id="@item.Id"> Удалить </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="clear:both"><br />Список контактов пуст</p>
+}
+

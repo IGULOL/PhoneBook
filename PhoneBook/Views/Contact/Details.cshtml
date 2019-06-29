@@ -1,0 +1,140 @@
+﻿@model PhoneBook.Models.Contacts.Contact
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Подробная информация</title>
+</head>
+<body>
+
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+
+    <br />
+    <div>
+        <h4>Основная информация:</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @if (Model.Surname != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Surname)
+                </dd>
+            }
+            @if (Model.Name != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            }
+            @if (Model.Patronymic != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Patronymic)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Patronymic)
+                </dd>
+            }
+        </dl>
+        <hr />
+
+        <partial name="/Views/Phone/_IndexPhone.cshtml" for="Phones" />
+
+        <hr />
+        @if (Model.Address != null || Model.Job != null || Model.Position != null
+           || Model.Email != null || Model.Skype != null || Model.Group != null)
+        {
+            <h4>Дополнительная информация:</h4>
+            <dl class="dl-horizontal">
+                @if (Model.Address != null)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                }
+                @if (Model.Job != null)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Job)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Job)
+                    </dd>
+                }
+                @if (Model.Position != null)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Position)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Position)
+                    </dd>
+                }
+                @if (Model.Email != null)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        <a href=@String.Concat("mailto:",Model.Email)>@Html.DisplayFor(model => model.Email)</a>
+                    </dd>
+                }
+                @if (Model.Skype != null)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Skype)
+                    </dt>
+                    <dd>
+                        <a href=@String.Concat("skype:",Model.Skype,"?call")>@Html.DisplayFor(model => model.Skype)</a>
+                    </dd>
+                }
+                @if (Model.Group != null)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Group)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Group.Name)
+                    </dd>
+                }
+            </dl>
+        }
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Редактирование</a> |
+        <a asp-area="" asp-action="Index" asp-controller="Home">Назад к списку</a>
+    </div>
+</body>
+</html>
+
+
+@section scripts
+    {
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+           $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+    </script>
+}

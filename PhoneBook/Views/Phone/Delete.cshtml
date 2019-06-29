@@ -1,0 +1,32 @@
+﻿@model PhoneBook.Models.Phones.Phone
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+        <h4>Вы уверены, что хотите удалить номер?</h4>
+    </div>
+    <div class="modal-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Number)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Number)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TypePhone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TypePhone.Name)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete" asp-controller="Phone">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Удалить" class="btn btn-default" /> | 
+                <input type="submit" class="btn" data-dismiss="modal" value="Отмена" area-hidden="true">
+            </form>                
+        </div>
+    </div>
+</div>
